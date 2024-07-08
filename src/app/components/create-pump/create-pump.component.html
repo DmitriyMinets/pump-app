@@ -1,0 +1,115 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="flex flex-col">
+      <label>Название насоса</label>
+      <input
+        formControlName="name"
+        type="text"
+        [ngClass]="commonInputClass"
+        placeholder="Название насоса"
+      />
+      <p class="text-red-600 font-medium mb-2" *ngIf="isError && formControls.name.errors">
+        Данное поле обязательно для заполнения
+      </p>
+    </div>
+    <div class="flex flex-col">
+      <label>Максимальное давление</label>
+      <input
+        formControlName="maxPressure"
+        type="number"
+        [ngClass]="commonInputClass"
+        placeholder="Максимальное давление"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label>Температура жидкости</label>
+      <input
+        formControlName="liquidTemperature"
+        type="number"
+        [ngClass]="commonInputClass"
+        placeholder="Температура жидкости"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label>Изображение</label>
+      <input
+        type="file"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+        formControlName="image"
+        [ngClass]="commonInputClass"
+        placeholder="Изображение"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label>Вес</label>
+      <input
+        formControlName="weight"
+        type="number"
+        [ngClass]="commonInputClass"
+        placeholder="Вес"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label>Цена</label>
+      <input
+        formControlName="price"
+        type="number"
+        [ngClass]="commonInputClass"
+        placeholder="Цена"
+      />
+    </div>
+    <div class="flex flex-col">
+      <label>Мотор</label>
+      <select [ngClass]="commonInputClass" formControlName="motorId">
+        <option value="" disabled selected>Выберите мотор</option>
+        <option *ngFor="let motor of motors" [value]="motor.id">
+          {{ motor.name }}
+        </option>
+      </select>
+      <p class="text-red-600 font-medium mb-2" *ngIf="isError && formControls.motorId.errors">
+        Данное поле обязательно для заполнения
+      </p>
+    </div>
+    <div class="flex flex-col">
+      <label>Материал корпуса</label>
+      <select [ngClass]="commonInputClass" formControlName="bodyMaterialId">
+        <option value="" disabled selected>Выберите материал корпуса</option>
+        <option *ngFor="let material of materials" [value]="material.id">
+          {{ material.name }}
+        </option>
+      </select>
+      <p class="text-red-600 font-medium mb-2" *ngIf="isError && formControls.bodyMaterialId.errors">
+        Данное поле обязательно для заполнения
+      </p>
+    </div>
+    <div class="flex flex-col">
+      <label>Материал рабочего колеса</label>
+      <select [ngClass]="commonInputClass" formControlName="impellerMaterialId">
+        <option value="" disabled selected>
+          Выберите материал рабочего колеса
+        </option>
+        <option *ngFor="let material of materials" [value]="material.id">
+          {{ material.name }}
+        </option>
+      </select>
+      <p class="text-red-600 font-medium mb-2" *ngIf="isError && formControls.impellerMaterialId.errors">
+        Данное поле обязательно для заполнения
+      </p>
+    </div>
+    <div class="col-span-1 md:col-span-2 flex flex-col">
+      <label>Описание</label>
+      <textarea
+        class="border-2 w-full py-2 px-4 mb-2"
+        style="max-height: 200px; min-height: 200px"
+        placeholder="Описание"
+        formControlName="description"
+      ></textarea>
+    </div>
+  </div>
+  <div class="flex justify-end mt-4">
+    <button type="submit" class="py-2 px-4 rounded bg-blue-600 text-white">
+      {{ isEdit ? "Обновить" : "Создать" }}
+    </button>
+  </div>
+</form>

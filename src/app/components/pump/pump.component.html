@@ -1,0 +1,32 @@
+<div class="py-4 px-6 border-2 border-blue-400 rounded flex flex-col mb-2 shadow-lg bg-white">
+  <div class="flex items-center">
+    <img [src]="pump.imageUrl" [alt]="pump.name" class="w-1/6 mr-4 rounded-lg shadow-sm" />
+    <div class="flex flex-col items-center flex-grow">
+      <h2 class="mb-2 text-md text-center font-semibold">{{ pump.name }}</h2>
+      <p class="text-gray-600">
+        Цена:
+        <span class="font-bold text-lg text-gray-800">{{ pump.price | currency: 'RUB' }}</span>
+      </p>
+    </div>
+    <div class="ml-auto flex space-x-2">
+      <button
+        class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded transition-colors duration-200"
+        (click)="onViewDetails()"
+      >
+        Показать детали
+      </button>
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors duration-200"
+        (click)="onEdit()"
+      >
+        Изменить
+      </button>
+      <button
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-colors duration-200"
+        (click)="remove(pump.id)"
+      >
+        Удалить
+      </button>
+    </div>
+  </div>
+</div>

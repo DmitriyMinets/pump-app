@@ -1,0 +1,68 @@
+<div>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label>Название мотора</label>
+        <input
+          class="border-2 w-full py-2 px-4 mb-2"
+          formControlName="name"
+          type="text"
+          placeholder="Название мотора"
+        />
+        <p class="text-red-600 font-medium  mb-2" *ngIf="isError && formControls.name.errors">
+          Данное поле обязательно для заполнения
+        </p>
+      </div>
+      <div class="flex flex-col">
+        <label>Мощность</label>
+        <input
+          class="border-2 w-full py-2 px-4 mb-2"
+          formControlName="power"
+          type="number"
+          placeholder="Мощность"
+        />
+      </div>
+      <div class="flex flex-col">
+        <label>Ток</label>
+        <input
+          class="border-2 w-full py-2 px-4 mb-2"
+          formControlName="current"
+          type="number"
+          placeholder="Ток"
+        />
+      </div>
+      <div class="flex flex-col">
+        <label>Номинальная скорость</label>
+        <input
+          class="border-2 w-full py-2 px-4 mb-2"
+          formControlName="rateSpeed"
+          type="number"
+          placeholder="Вес"
+        />
+      </div>
+      <div class="flex flex-col">
+        <label>Цена</label>
+        <input
+          class="border-2 w-full py-2 px-4 mb-2"
+          formControlName="price"
+          type="number"
+          placeholder="Цена"
+        />
+      </div>
+      <div class="col-span-1 md:col-span-2 flex flex-col">
+        <label>Описание</label>
+        <textarea
+          class="border-2 w-full py-2 px-4 mb-2"
+          style="max-height: 150px; min-height: 150px"
+          placeholder="Описание"
+          formControlName="description"
+        ></textarea>
+      </div>
+    </div>
+    <div class="flex justify-end mt-4">
+      <button type="submit" class="py-2 px-4 rounded bg-blue-600 text-white">
+        Создать
+      </button>
+    </div>
+  </form>
+</div>

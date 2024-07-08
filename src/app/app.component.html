@@ -1,0 +1,44 @@
+<app-global-error></app-global-error>
+
+<div class="max-w-3xl container mx-auto pt-5 max">
+  <h1 class="font-bold md-2 text-center text-lg">{{ title | titlecase }}</h1>
+  <button
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2"
+    (click)="openModalForNewPump()"
+  >
+    Добавить насос
+  </button>
+  <button
+    class="bg-blue-500 hover:bg-blue-700 ml-2 text-white font-bold py-2 px-4 rounded mb-2"
+    (click)="openModalForNewMotor()"
+  >
+    Добавить мотор
+  </button>
+  <app-pump
+    *ngFor="let pump of pumps$ | async"
+    [pump]="pump"
+    (editPump)="openModalWithPump($event)"
+    (viewDetails)="openDetailsModal(pump)"
+    (removePump)="getPumps()"
+  ></app-pump>
+
+  <app-modal
+    *ngIf="modalService.isVisible$ | async"
+    [title]="(modalService.title$ | async) ?? ''"
+  >
+    <ng-container *ngIf="modalService.component$ | async as component">
+
+      <app-create-pump
+        *ngIf="component === 'createPump' || component === 'updatePump'"
+        [pump]="modalService.data$ | async"
+        (pumpAdded)="getPumps()"
+        [isEdit]="modalService.data$ | async"
+      ></app-create-pump>
+      <app-details-pump
+        *ngIf="component === 'details'"
+        [pump]="modalService.data$ | async"
+      ></app-details-pump>
+      <app-create-motor *ngIf="component === 'createMotor'"> </app-create-motor>
+    </ng-container>
+  </app-modal>
+</div>

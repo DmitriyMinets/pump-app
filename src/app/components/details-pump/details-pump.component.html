@@ -1,0 +1,123 @@
+<div
+  class="p-6 bg-gray-50 rounded-lg shadow-md max-w-4xl mx-auto min-h-[450px] min-w-[700px] mt-2"
+>
+  <h2 class="text-xl font-bold mb-4 text-center">{{ pump.name }}</h2>
+
+  <div class="flex items-start mb-4">
+    <img
+      [src]="pump.imageUrl"
+      [alt]="pump.name"
+      class="w-1/3 rounded-lg shadow-sm mr-4"
+    />
+    <div class="flex-grow overflow-hidden">
+      <p
+        class="text-sm break-words max-w-full max-h-52 overflow-auto rounded custom-scrollbar border border-black p-4"
+      >
+        <span class="font-medium">Описание:</span>
+        <span *ngIf="!showFullDescription && pump.description !== null">
+          {{ pump.description | slice : 0 : 50 }}
+          <span *ngIf="pump.description.length > 50">...</span>
+        </span>
+        <span *ngIf="showFullDescription">{{ pump.description }}</span>
+        <button
+          *ngIf="
+            pump.description !== null && pump.description.length > 50
+          "
+          (click)="showFullDescription = !showFullDescription"
+          class="text-blue-500 ml-2"
+        >
+          {{ showFullDescription ? "Скрыть" : "Показать полностью" }}
+        </button>
+      </p>
+    </div>
+  </div>
+
+  <hr class="my-4" />
+
+  <p class="text-sm">
+    <span class="font-medium">Максимальное давление:</span>
+    {{ pump.maxPressure }} бар
+  </p>
+
+  <p class="text-sm">
+    <span class="font-medium">Температура жидкости:</span>
+    {{ pump.liquidTemperature }} &deg;C
+  </p>
+
+  <p class="text-sm">
+    <span class="font-medium">Вес:</span>
+    {{ pump.weight }} кг
+  </p>
+
+  <hr class="my-4" />
+
+  <details>
+    <summary
+      class="text-sm leading-6 text-slate-900 dark:text-white font-semibold select-none cursor-pointer"
+    >
+      Материал корпуса: {{ pump.bodyMaterial.name }}
+    </summary>
+    <div class="mt-4 p-4 bg-gray-100 rounded-lg shadow-inner">
+      <p class="text-sm">
+        <span class="font-medium">Описание:</span>
+        {{ pump.bodyMaterial.description }}
+      </p>
+    </div>
+  </details>
+
+  <hr class="my-4" />
+
+  <details>
+    <summary
+      class="text-sm leading-6 text-slate-900 dark:text-white font-semibold select-none cursor-pointer"
+    >
+      Материал рабочего колеса: {{ pump.impellerMaterial.name }}
+    </summary>
+    <div class="mt-4 p-4 bg-gray-100 rounded-lg shadow-inner">
+      <p class="text-sm">
+        <span class="font-medium">Описание:</span>
+        {{ pump.impellerMaterial.description }}
+      </p>
+    </div>
+  </details>
+
+  <hr class="my-4" />
+
+  <details>
+    <summary
+      class="text-sm leading-6 text-slate-900 dark:text-white font-semibold select-none cursor-pointer"
+    >
+      Мотор: {{ pump.motor.name }}
+    </summary>
+    <div class="mt-4 p-4 bg-gray-100 rounded-lg shadow-inner">
+      <h3 class="text-lg font-bold mb-2">Детали мотора</h3>
+      <p class="text-sm">
+        <span class="font-medium">Мощность мотора:</span>
+        {{ pump.motor.power }}кВт
+      </p>
+      <p class="text-sm">
+        <span class="font-medium">Ток:</span>
+        {{ pump.motor.current }}А
+      </p>
+      <p class="text-sm">
+        <span class="font-medium">Номинальная скорость:</span>
+        {{ pump.motor.ratedSpeed }}об/мин
+      </p>
+      <p class="text-sm">
+        <span class="font-medium">Цена:</span>
+        {{ pump.motor.price }}руб.
+      </p>
+      <p class="text-sm">
+        <span class="font-medium">Описание:</span>
+        {{ pump.motor.description }}
+      </p>
+    </div>
+  </details>
+
+  <hr class="my-4" />
+
+  <p class="text-sm">
+    <span class="font-medium">Цена:</span>
+    {{ pump.price }} руб.
+  </p>
+</div>

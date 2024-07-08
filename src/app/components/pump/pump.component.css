@@ -1,0 +1,13 @@
+.rotate-0 {
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+  }
+  
+  .rotate-180 {
+    transform: rotate(180deg);
+    transition: transform 0.3s;
+  }
+  
+  .text-sm .break-words {
+    word-break: break-word;
+  }
